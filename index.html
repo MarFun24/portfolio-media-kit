@@ -93,6 +93,7 @@ body{background:var(--page);color:var(--ink);font-family:'Source Sans 3',sans-se
   position:fixed;top:var(--nav-h);left:0;right:0;z-index:50;
   background:var(--panel);border-bottom:1px solid var(--rule);
   display:flex;overflow-x:auto;scrollbar-width:none;
+  transition:top 0.3s ease;
 }
 .stab{
   font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;
@@ -116,13 +117,14 @@ section[id],div[id]{scroll-margin-top:110px;}
 .cover-grid{
   position:absolute;inset:0;
   background:
-    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.03) 80px),
-    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,.03) 80px);
+    radial-gradient(ellipse 80% 60% at 20% 30%,rgba(0,100,180,.18) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 70% at 80% 80%,rgba(0,60,120,.22) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 60% 10%,rgba(100,180,255,.08) 0%,transparent 55%);
 }
 .cover-glow{
-  position:absolute;bottom:-200px;right:-100px;
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,119,182,.55) 0%,transparent 65%);
+  position:absolute;top:60px;right:80px;
+  width:600px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,119,182,.2) 0%,transparent 65%);
 }
 
 .cover-ticker{
@@ -232,44 +234,44 @@ section[id],div[id]{scroll-margin-top:110px;}
 
 /* ── FEATURED PEOPLE ── */
 .people-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  display:flex;
+  flex-direction:row;
   gap:2px;margin-top:52px;
+  height:320px;
 }
 .person-card{
-  position:relative;overflow:hidden;aspect-ratio:3/4;
+  position:relative;overflow:hidden;
+  flex:1;min-width:0;
   cursor:default;
 }
 .person-card img{
-  width:100%;height:100%;object-fit:cover;
+  width:100%;height:100%;object-fit:cover;object-position:center top;
   display:block;transition:transform .5s ease;
-  filter:grayscale(20%);
+  filter:grayscale(15%);
 }
 .person-card:hover img{transform:scale(1.04);filter:grayscale(0%);}
 .person-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(3,4,94,.88) 0%,rgba(3,4,94,.3) 50%,transparent 75%);
+  background:linear-gradient(to top,rgba(3,4,94,.85) 0%,rgba(3,4,94,.2) 45%,transparent 70%);
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:24px 22px;
+  padding:18px 16px;
   transition:background .4s ease;
 }
 .person-card:hover .person-overlay{
-  background:linear-gradient(to top,rgba(2,62,138,.92) 0%,rgba(2,62,138,.4) 55%,transparent 78%);
+  background:linear-gradient(to top,rgba(2,62,138,.92) 0%,rgba(2,62,138,.4) 50%,transparent 72%);
 }
 .person-name{
   font-family:'Merriweather',serif;font-weight:700;
-  font-size:1.05rem;color:#fff;line-height:1.15;margin-bottom:4px;
+  font-size:.9rem;color:#fff;line-height:1.15;margin-bottom:3px;
 }
 .person-role{
-  font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--blue-lt);line-height:1.4;
 }
 .person-issue{
-  font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.38);margin-top:6px;
+  font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-top:4px;
 }
-/* Tropoly card spans 2 columns */
-.person-card.wide{grid-column:span 2;aspect-ratio:16/9;}
 
 /* ── CHANNELS ── */
 .channels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;}
@@ -406,8 +408,7 @@ section[id],div[id]{scroll-margin-top:110px;}
   .alt-inner,.white-inner{padding:64px 28px;}
   .stat-row{grid-template-columns:repeat(3,1fr);}
   .aud-grid{grid-template-columns:1fr;}
-  .people-grid{grid-template-columns:1fr 1fr;}
-  .person-card.wide{grid-column:span 2;aspect-ratio:16/9;}
+  .people-grid{height:220px;}
   .channels-grid{grid-template-columns:1fr 1fr;}
   .adv-grid{grid-template-columns:1fr;}
   .helen-grid{grid-template-columns:1fr;}
@@ -416,8 +417,8 @@ section[id],div[id]{scroll-margin-top:110px;}
 }
 @media(max-width:560px){
   .stat-row{grid-template-columns:repeat(2,1fr);}
-  .people-grid{grid-template-columns:1fr;}
-  .person-card.wide{grid-column:span 1;aspect-ratio:4/3;}
+  .people-grid{flex-direction:column;height:auto;}
+  .person-card{height:200px;flex:none;}
   .channels-grid{grid-template-columns:1fr;}
   .placements-tabs{flex-wrap:wrap;}
   .ptab{flex:none;width:50%;}
@@ -600,7 +601,7 @@ section[id],div[id]{scroll-margin-top:110px;}
     </div>
     <div class="people-grid">
       <!-- Tropoly wide card -->
-      <div class="person-card wide">
+      <div class="person-card">
         <img src="https://res.cloudinary.com/ded9cb1wd/image/upload/v1773330601/TROPOLY_djionh.jpg" alt="Tropoly Team" loading="lazy">
         <div class="person-overlay">
           <div class="person-name">The Tropoly Team</div>
@@ -631,7 +632,7 @@ section[id],div[id]{scroll-margin-top:110px;}
         <img src="https://res.cloudinary.com/ded9cb1wd/image/upload/v1773330601/KRIS_KRUG_rkasa2.jpg" alt="Kris Krug" loading="lazy">
         <div class="person-overlay">
           <div class="person-name">Kris Krug</div>
-          <div class="person-role">Photography & Creative Technology · BC</div>
+          <div class="person-role">Creative Technology · BC</div>
           <div class="person-issue">Portfolio.YVR Feature</div>
         </div>
       </div>
@@ -644,15 +645,7 @@ section[id],div[id]{scroll-margin-top:110px;}
           <div class="person-issue">Portfolio.YVR Feature</div>
         </div>
       </div>
-      <!-- Chad Quinn -->
-      <div class="person-card">
-        <img src="https://res.cloudinary.com/ded9cb1wd/image/upload/v1773330603/CHAD_QUINN_utcoik.png" alt="Chad Quinn" loading="lazy">
-        <div class="person-overlay">
-          <div class="person-name">Chad Quinn</div>
-          <div class="person-role">Entrepreneur · BC</div>
-          <div class="person-issue">Portfolio.YVR Feature</div>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
@@ -934,48 +927,92 @@ function goTo(id){
   window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-112,behavior:'smooth'});
 }
 document.addEventListener('DOMContentLoaded',function(){
-  var lastY=0;
+  var nav=document.getElementById('nav');
+  var tabs=document.getElementById('sticky-tabs');
+  var spacer=document.getElementById('tabs-spacer');
+  var btt=document.getElementById('btt');
   var sects=['overview','audience','people','channels','placements','advertorial','helen','contact'];
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    var nav=document.getElementById('nav');
-    var tabs=document.getElementById('sticky-tabs');
-    var spacer=document.getElementById('tabs-spacer');
-    if(y>200&&y>lastY+5){
-      nav.classList.add('hidden');
-      tabs.style.top='0';spacer.style.height='42px';
-    }else if(y<lastY-5||y<200){
+  var barsAnimated=false;
+
+  // Track state — only touch DOM when it actually changes
+  var navVisible=true;
+  var lastY=window.scrollY;
+  var lastDir=0;
+  var ticking=false;
+
+  function setNavVisible(show){
+    if(show===navVisible)return;
+    navVisible=show;
+    if(show){
       nav.classList.remove('hidden');
-      tabs.style.top='60px';spacer.style.height='102px';
+      tabs.style.top='60px';
+      spacer.style.height='102px';
+    }else{
+      nav.classList.add('hidden');
+      tabs.style.top='0';
+      spacer.style.height='42px';
     }
-    lastY=y;
-    document.getElementById('btt').classList.toggle('vis',y>500);
-    var scrollY=y+120,active='overview';
-    sects.forEach(function(id){var el=document.getElementById(id);if(el&&el.offsetTop<=scrollY)active=id;});
-    document.querySelectorAll('.stab').forEach(function(t,i){t.classList.toggle('active',sects[i]===active);});
-  });
+  }
+
+  function onScroll(){
+    ticking=false;
+    var y=window.scrollY;
+    var delta=y-lastY;
+
+    // Only register direction on meaningful movement to kill micro-jitter
+    if(Math.abs(delta)>6){
+      lastDir=delta>0?1:-1;
+      lastY=y;
+    }
+
+    // Always show at top
+    if(y<100){
+      setNavVisible(true);
+    }else if(lastDir===1){
+      setNavVisible(false);
+    }else if(lastDir===-1){
+      setNavVisible(true);
+    }
+
+    btt.classList.toggle('vis',y>500);
+
+    // Active tab highlight
+    var active='overview';
+    sects.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el&&el.offsetTop<=y+130)active=id;
+    });
+    document.querySelectorAll('.stab').forEach(function(t,i){
+      t.classList.toggle('active',sects[i]===active);
+    });
+
+    // Geo bars — trigger once on scroll into view
+    if(!barsAnimated){
+      var sect=document.getElementById('audience');
+      if(sect&&sect.getBoundingClientRect().top<window.innerHeight*0.85){
+        document.querySelectorAll('.aud-bar-fill').forEach(function(bar){
+          bar.style.width=bar.getAttribute('data-w');
+        });
+        barsAnimated=true;
+      }
+    }
+  }
+
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(onScroll);ticking=true;}
+  },{passive:true});
+
   var ham=document.getElementById('ham');
   var mob=document.getElementById('mob-menu');
   ham.addEventListener('click',function(){ham.classList.toggle('open');mob.classList.toggle('open');});
   document.querySelectorAll('.mob-link').forEach(function(l){
     l.addEventListener('click',function(){ham.classList.remove('open');mob.classList.remove('open');});
   });
-  document.getElementById('btt').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-  // Animate geo bars on scroll into view
-  var barsAnimated=false;
-  function tryAnimateBars(){
-    if(barsAnimated)return;
-    var sect=document.getElementById('audience');
-    if(sect&&sect.getBoundingClientRect().top<window.innerHeight*.85){
-      document.querySelectorAll('.aud-bar-fill').forEach(function(bar){
-        bar.style.width=bar.getAttribute('data-w');
-      });
-      barsAnimated=true;
-    }
-  }
-  window.addEventListener('scroll',tryAnimateBars);
-  tryAnimateBars();
-  document.getElementById('sticky-tabs').style.top='60px';
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  // Init
+  tabs.style.top='60px';
+  onScroll();
 });
 </script>
 </body>
