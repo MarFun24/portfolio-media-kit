@@ -244,10 +244,16 @@ section[id],div[id]{scroll-margin-top:110px;}
   flex:1;min-width:0;
   cursor:default;
 }
+.person-card.tropoly{
+  flex:2;
+}
 .person-card img{
   width:100%;height:100%;object-fit:cover;object-position:center top;
   display:block;transition:transform .5s ease;
   filter:grayscale(15%);
+}
+.person-card.tropoly img{
+  object-position:center 25%;
 }
 .person-card:hover img{transform:scale(1.04);filter:grayscale(0%);}
 .person-overlay{
@@ -345,7 +351,7 @@ section[id],div[id]{scroll-margin-top:110px;}
 .helen-bio{background:#fff;padding:44px 38px;}
 .helen-side{background:var(--panel);padding:44px 38px;display:flex;flex-direction:column;gap:2px;}
 .helen-photo-wrap{margin-bottom:28px;overflow:hidden;}
-.helen-photo-wrap img{width:100%;max-height:340px;object-fit:cover;object-position:top center;display:block;}
+.helen-photo-wrap img{width:100%;height:380px;object-fit:cover;object-position:60% 15%;display:block;}
 .helen-quote-block{border-left:3px solid var(--blue);padding-left:20px;margin-top:22px;}
 .helen-quote{font-family:'Merriweather',serif;font-style:italic;font-size:1.1rem;color:var(--muted);line-height:1.65;}
 .helen-creds{display:flex;flex-direction:column;margin-top:24px;}
@@ -419,6 +425,7 @@ section[id],div[id]{scroll-margin-top:110px;}
   .stat-row{grid-template-columns:repeat(2,1fr);}
   .people-grid{flex-direction:column;height:auto;}
   .person-card{height:200px;flex:none;}
+  .person-card.tropoly{height:260px;}
   .channels-grid{grid-template-columns:1fr;}
   .placements-tabs{flex-wrap:wrap;}
   .ptab{flex:none;width:50%;}
@@ -599,7 +606,7 @@ section[id],div[id]{scroll-margin-top:110px;}
     </div>
     <div class="people-grid">
       <!-- Tropoly wide card -->
-      <div class="person-card">
+      <div class="person-card tropoly">
         <img src="https://res.cloudinary.com/ded9cb1wd/image/upload/v1773330601/TROPOLY_djionh.jpg" alt="Tropoly Team" loading="lazy">
         <div class="person-overlay">
           <div class="person-name">The Tropoly Team</div>
